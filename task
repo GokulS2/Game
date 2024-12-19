@@ -1,0 +1,45 @@
+import java.util.Scanner;
+import java.util.Random;
+
+public class RockPaperScissors {
+    public static void main(String[] args) {
+        Scanner scanner = new Scanner(System.in);
+        Random random = new Random();
+
+        System.out.println("Enter your name: ");
+        String playerName = scanner.nextLine();
+
+        System.out.println("New Game Started!");
+        long startTime = System.currentTimeMillis();
+
+        String[] options = {"Rock", "Paper", "Scissors"};
+        System.out.println("Choose: Rock, Paper, or Scissors");
+        String playerChoice = scanner.nextLine();
+
+        String computerChoice = options[random.nextInt(3)];
+        System.out.println("Computer chose: " + computerChoice);
+
+        String result;
+        if (playerChoice.equalsIgnoreCase(computerChoice)) {
+            result = "It's a Draw!";
+        } else if ((playerChoice.equalsIgnoreCase("Rock") && computerChoice.equals("Scissors")) ||
+                   (playerChoice.equalsIgnoreCase("Scissors") && computerChoice.equals("Paper")) ||
+                   (playerChoice.equalsIgnoreCase("Paper") && computerChoice.equals("Rock"))) {
+            result = "You Win!";
+        } else {
+            result = "Computer Wins!";
+        }
+
+        long endTime = System.currentTimeMillis();
+        double timeTaken = (endTime - startTime) / 1000.0;
+
+        System.out.println(result);
+        System.out.println("Time taken: " + timeTaken + " seconds");
+
+        // Save to leaderboard (simulate with print statement)
+        System.out.println("Leaderboard Update:");
+        System.out.println(playerName + " - " + result + " - Time: " + timeTaken + " seconds");
+
+        scanner.close();
+    }
+}
